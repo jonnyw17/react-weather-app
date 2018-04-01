@@ -1,29 +1,17 @@
 {
-  "name": "react-weather-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jonnyw17/react-weather-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jonnyw17/react-weather-app/issues"
-  },
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "concurrently": "^3.5.1",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "helmet": "^3.12.0",
-    "logger": "0.0.1",
-    "winston": "^2.4.1"
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-scripts": "1.1.1"
   },
-  "homepage": "https://github.com/jonnyw17/react-weather-app#readme"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }

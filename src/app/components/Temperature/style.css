@@ -1,0 +1,17 @@
+.fa-circle {
+  font-size: 0.7em;
+  position: relative;
+  top: -14px;
+  margin-left: 5px;
+  color: #fff;
+  margin: 0 0 7px 0
+}
+.temperature {
+  display: inline-block;
+  color: #fff;
+  font-family: 'Arial';
+  font-weight: 100;
+  font-size: 2.5em;
+  margin: 0 0 15px 0;
+  font-family: 'Jura', sans-serif
+}
