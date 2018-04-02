@@ -23,6 +23,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+input[type=submit] {
+    -webkit-border-radius:0px;
+}
+
 .form-location {
   position: fixed;
   bottom: 0;
