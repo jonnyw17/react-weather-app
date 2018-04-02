@@ -25,19 +25,18 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('https://cors-anywhere.herokuapp.com/http://ip-api.com/json').then(response => {
+    fetch('https://api.ipdata.co').then(response => {
       return response.json()
     }).then(data => {
       this.setState({
         userCity: data.city,
-        userCountryCode: data.countryCode
+        userCountryCode: data.country_code
       })
     }).then(() => {
       fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/find?q=${this.state.userCity},${this.state.userCountryCode}&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`)
       .then(response => {
         return response.json();
       }).then(data => {
-        console.log(data)
         this.setState({
           userWeather: {
             condition: data.list[0].weather[0].main,
