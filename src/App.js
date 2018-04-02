@@ -26,7 +26,7 @@ class App extends Component {
 
   componentWillMount() {
     fetch('http://ip-api.com/json').then(response => {
-      return response.json();
+      return response.json()
     }).then(data => {
       this.setState({
         userCity: data.city,
