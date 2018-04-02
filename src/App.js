@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('https://ip-api.com/json').then(response => {
+    fetch('http://ip-api.com/json').then(response => {
       return response.json();
     }).then(data => {
       this.setState({
@@ -33,7 +33,7 @@ class App extends Component {
         userCountryCode: data.countryCode
       })
     }).then(() => {
-      fetch(`https://api.openweathermap.org/data/2.5/find?q=${this.state.userCity},${this.state.userCountryCode}&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`)
+      fetch(`http://api.openweathermap.org/data/2.5/find?q=${this.state.userCity},${this.state.userCountryCode}&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`)
       .then(response => {
         return response.json();
       }).then(data => {
@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   getWeather(inputLocation) {
-    fetch(`https://api.openweathermap.org/data/2.5/find?q=${inputLocation},uk&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`).then(response => {
+    fetch(`http://api.openweathermap.org/data/2.5/find?q=${inputLocation},uk&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`).then(response => {
       return response.json();
     }).then(data => {
       if (data.count === 0) {
