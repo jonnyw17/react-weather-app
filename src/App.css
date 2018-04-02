@@ -3,5 +3,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh
+  height: 100vh;
+  background: linear-gradient(to bottom, #6ec9df 0%, #145b99 100%);
 }

@@ -25,8 +25,9 @@ class Input extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="weather-input" placeholder="Location"/>
+      <form className="form-location" onSubmit={this.handleSubmit}>
+        <input type="text" className="weather-input" placeholder="Search for UK cities weather"/>
+        <input type="submit" className="sumbit-search" value="Search"/>
       </form>
     )
   }

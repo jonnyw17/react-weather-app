@@ -1,34 +1,55 @@
-input {
-  background-color: #796969;
-  border: none;
-  outline: none;
-  width: 180px;
-  padding: 10px;
-  color: #fff;
-  border-radius: 3px;
-  font-family: 'Jura', sans-serif
-}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #fff;
-  font-family: 'Jura', sans-serif
+  color: #000;
+  opacity: 0.2;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #fff;
-  font-family: 'Jura', sans-serif
+  color: #000;
+  opacity: 0.2;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #fff;
-  font-family: 'Jura', sans-serif
+  color: #000;
+  opacity: 0.2;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
 }
 :-moz-placeholder { /* Firefox 18- */
+  color: #000;
+  opacity: 0.2;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-location {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.sumbit-search {
+  background-color: #174878;
   color: #fff;
-  font-family: 'Jura', sans-serif
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  font-size: 1em
+}
+.sumbit-search:hover {
+  background-color: #156d8d
 }
 
-input:focus {
-    background-color: #796969;
-}
-
-input:active {
-    background-color: #796969;
+.weather-input {
+  padding: 5px 5px 5px 10px ;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  color: #796969;
+  font-size: 1.2em;
+  height: 35px;
+  font-family: 'Roboto', sans-serif;
 }

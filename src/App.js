@@ -6,7 +6,7 @@ import Input from './app/components/Input/InputLocation';
 import Location from './app/components/Location/Location';
 import Temperature from './app/components/Temperature/Temperature';
 import Condition from './app/components/Condition/Condition';
-// import BackgroundImage from ''
+import WeatherImage from './app/components/WeatherImage/WeatherImage';
 
 class App extends Component {
   constructor(props) {
@@ -16,10 +16,11 @@ class App extends Component {
       userRequestLocation: '',
       userWeather: {},
       userLocation: '',
-      removeComponents: false
+      removeComponents: false,
+      weatherIconId: ''
     }
     this.getWeather = this.getWeather.bind(this);
-    this.backgroundImage = this.backgroundImage.bind(this);
+    this.pageRefresh = this.pageRefresh.bind(this);
   }
 
   componentWillMount() {
@@ -32,17 +33,22 @@ class App extends Component {
       .then(response => {
         return response.json();
       }).then(data => {
+        console.log(data)
         this.setState({
           userWeather: {
             condition: data.list[0].weather[0].main,
             temperature: Math.ceil(data.list[0].main.temp),
             removeComponents: false
-          }
+          },
+          weatherIconId: data.list[0].weather[0].id,
         })
       })
     })
   }
 
+  pageRefresh() {
+    window.location.reload()
+  }
 
   getWeather(inputLocation) {
     fetch(`http://api.openweathermap.org/data/2.5/find?q=${inputLocation},uk&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`).then(response => {
@@ -60,43 +66,39 @@ class App extends Component {
             condition: data.list[0].weather[0].main,
             temperature: Math.ceil(data.list[0].main.temp),
             removeComponents: this.state.removeComponents = false
-          }
+          },
+          weatherIconId: data.list[0].weather[0].id,
         })
       }
     })
   }
 
-  backgroundImage() {
-    let styles;
-    if(this.state.userWeather.temperature < 15 || this.state.userRequestWeather.temperature < 15) {
-      return styles = {
-        backgroundImage: "url('http://vunature.com/wp-content/uploads/2016/11/mountains-minimal-nature-wallpapers-for-iphone-5.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }
-    }
-  }
-
   render() {
     return (
-      <div className="App" style={this.backgroundImage()}>
+      <div className="App">
         <Location location={
           this.state.userRequestLocation ?
           this.state.userRequestLocation :
           this.state.userLocation}
         />
 
-        <Condition condition={
-          this.state.userRequestWeather.condition ?
-          this.state.userRequestWeather.condition :
-          this.state.userWeather.condition}
+        <WeatherImage imageCode={
+          this.state.weatherIconId}
           render={this.state.removeComponents}
+          pageRefresh={this.pageRefresh}
         />
 
         <Temperature temp={
           this.state.userRequestWeather.temperature ?
           this.state.userRequestWeather.temperature :
           this.state.userWeather.temperature}
+          render={this.state.removeComponents}
+        />
+
+        <Condition condition={
+          this.state.userRequestWeather.condition ?
+          this.state.userRequestWeather.condition :
+          this.state.userWeather.condition}
           render={this.state.removeComponents}
         />
 
