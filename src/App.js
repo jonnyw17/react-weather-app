@@ -15,7 +15,8 @@ class App extends Component {
       userRequestWeather: {},
       userRequestLocation: '',
       userWeather: {},
-      userLocation: '',
+      userCity: '',
+      userCountryCode: '',
       removeComponents: false,
       weatherIconId: ''
     }
@@ -27,9 +28,12 @@ class App extends Component {
     fetch('http://ip-api.com/json').then(response => {
       return response.json();
     }).then(data => {
-      this.setState({userLocation: data.city})
+      this.setState({
+        userCity: data.city,
+        userCountryCode: data.countryCode
+      })
     }).then(() => {
-      fetch(`http://api.openweathermap.org/data/2.5/find?q=${this.state.userLocation},uk&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`)
+      fetch(`http://api.openweathermap.org/data/2.5/find?q=${this.state.userCity},${this.state.userCountryCode}&units=metric&APPID=47ffea77c9fa76f064142beb0dbd9654`)
       .then(response => {
         return response.json();
       }).then(data => {
@@ -79,7 +83,7 @@ class App extends Component {
         <Location location={
           this.state.userRequestLocation ?
           this.state.userRequestLocation :
-          this.state.userLocation}
+          this.state.userCity}
         />
 
         <WeatherImage imageCode={
