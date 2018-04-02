@@ -30,7 +30,6 @@ input[type=submit] {
 
 .form-location {
   position: fixed;
-  position: -webkit-sticky;
   bottom: 0;
   border: 0;
   width: 100%;
