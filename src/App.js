@@ -41,7 +41,7 @@ class App extends Component {
       }).then(data => {
         this.setState({
           userWeather: {
-            condition: data.list[0].weather[0].main,
+            condition: data.list[0].weather[0].description,
             temperature: Math.ceil(data.list[0].main.temp),
             removeComponents: false
           },
@@ -71,7 +71,7 @@ class App extends Component {
         this.setState({
           userRequestLocation: inputLocation,
           userRequestWeather: {
-            condition: data.list[0].weather[0].main,
+            condition: data.list[0].weather[0].description,
             temperature: Math.ceil(data.list[0].main.temp),
             removeComponents: this.state.removeComponents = false
           },
@@ -90,17 +90,14 @@ class App extends Component {
 
   if (userTemp) {
     if ((userTemp < 6) || (userRequestTemp < 6)) {
-      console.log(10)
       this.setState({
         backgroundColor: 'cold' // cold temperature background color
       })
     } else if ((userTemp >= 6 && userTemp < 25) || (userRequestTemp >= 6 && userRequestTemp < 25)) {
-      console.log(25)
       this.setState({
         backgroundColor: 'normal' // normal temperature background color
       })
     } else if ((userTemp > 25) || userRequestTemp > 25) {
-      console.log(25, '>')
       this.setState({
         backgroundColor: 'hot' // hot temperature background color
       })
@@ -126,18 +123,18 @@ class App extends Component {
           />
         </div>
         <div>
-          <Temperature temp={
-            this.state.userRequestWeather.temperature ?
-            this.state.userRequestWeather.temperature :
-            this.state.userWeather.temperature}
-            render={this.state.removeComponents}
-          />
-        </div>
-        <div>
           <Condition condition={
             this.state.userRequestWeather.condition ?
             this.state.userRequestWeather.condition :
             this.state.userWeather.condition}
+            render={this.state.removeComponents}
+          />
+        </div>
+        <div>
+          <Temperature temp={
+            this.state.userRequestWeather.temperature ?
+            this.state.userRequestWeather.temperature :
+            this.state.userWeather.temperature}
             render={this.state.removeComponents}
           />
         </div>
