@@ -1,4 +1,6 @@
 import React from 'react';
+import PT from 'prop-types';
+
 import 'weathericons/css/weather-icons.css';
 
 // CSS
@@ -16,4 +18,10 @@ const WeatherImage = (props) => (
 
   </div>
 )
+
+WeatherImage.propTypes = {
+  pageRefresh: PT.func.isRequired,
+  imageCode: PT.string
+}
+
 export default WeatherImage;

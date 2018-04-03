@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import 'weathericons/css/weather-icons.css';
 
 import './style.css'
@@ -15,4 +16,9 @@ const Temperature = (props) => (
   }
 </div>
 )
+
+Temperature.propTypes = {
+  temp: PT.number
+}
+
 export default Temperature

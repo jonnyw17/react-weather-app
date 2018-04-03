@@ -24,16 +24,18 @@ class Input extends Component {
   }
 
   render() {
+
     return (
       <form className="form-location" onSubmit={this.handleSubmit}>
         <input type="text" className="weather-input" placeholder="Whats the weather like in...."/>
-        <input type="submit" className="sumbit-search" value="Search"/>
+        <input type="submit" className="btn-submit" value="Search"/>
       </form>
     )
   }
 
   static propTypes = {
-    getweather: PT.func.isRequired
+    getweather: PT.func.isRequired,
+    submitClass: PT.string.isRequired
   }
 
 }

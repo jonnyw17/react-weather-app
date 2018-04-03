@@ -1,9 +1,5 @@
-.location-container {
-  position: absolute;
-  top: 0;
-}
 .location {
-  margin-top: 125px;
+  margin-top: 50px;
   color: #fff;
   letter-spacing: 3px;
   font-size: 2em;

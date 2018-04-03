@@ -18,10 +18,12 @@ class App extends Component {
       userCity: '',
       userCountryCode: '',
       removeComponents: false,
-      weatherIconId: ''
+      weatherIconId: '',
+      backgroundColor: ''
     }
     this.getWeather = this.getWeather.bind(this);
     this.pageRefresh = this.pageRefresh.bind(this);
+    this.weatherConditionBackgroundColor = this.weatherConditionBackgroundColor.bind(this);
   }
 
   componentWillMount() {
@@ -45,6 +47,9 @@ class App extends Component {
           },
           weatherIconId: data.list[0].weather[0].id,
         })
+        if(this.state.userWeather || this.state.userRequestWeather) {
+          this.weatherConditionBackgroundColor()
+        }
       })
     })
   }
@@ -72,42 +77,75 @@ class App extends Component {
           },
           weatherIconId: data.list[0].weather[0].id,
         })
+        if(this.state.userWeather || this.state.userRequestWeather) {
+          this.weatherConditionBackgroundColor()
+        }
       }
     })
   }
 
+  weatherConditionBackgroundColor() {
+  const userTemp = this.state.userWeather.temperature;
+  const userRequestTemp = this.state.userRequestWeather.temperature;
+
+  if (userTemp) {
+    if ((userTemp < 6) || (userRequestTemp < 6)) {
+      console.log(10)
+      this.setState({
+        backgroundColor: 'cold' // cold temperature background color
+      })
+    } else if ((userTemp >= 6 && userTemp < 25) || (userRequestTemp >= 6 && userRequestTemp < 25)) {
+      console.log(25)
+      this.setState({
+        backgroundColor: 'normal' // normal temperature background color
+      })
+    } else if ((userTemp > 25) || userRequestTemp > 25) {
+      console.log(25, '>')
+      this.setState({
+        backgroundColor: 'hot' // hot temperature background color
+      })
+    }
+  }
+}
+
   render() {
     return (
-      <div className="App">
-        <Location location={
-          this.state.userRequestLocation ?
-          this.state.userRequestLocation :
-          this.state.userCity}
-        />
-
-        <WeatherImage imageCode={
-          this.state.weatherIconId}
-          render={this.state.removeComponents}
-          pageRefresh={this.pageRefresh}
-        />
-
-        <Temperature temp={
-          this.state.userRequestWeather.temperature ?
-          this.state.userRequestWeather.temperature :
-          this.state.userWeather.temperature}
-          render={this.state.removeComponents}
-        />
-
-        <Condition condition={
-          this.state.userRequestWeather.condition ?
-          this.state.userRequestWeather.condition :
-          this.state.userWeather.condition}
-          render={this.state.removeComponents}
-        />
-
-        <Input getweather={
-          this.getWeather}
-        />
+      <div id="test" className={`App ${this.state.backgroundColor}`}>
+        <div>
+          <Location location={
+            this.state.userRequestLocation ?
+            this.state.userRequestLocation :
+            this.state.userCity}
+          />
+        </div>
+        <div>
+          <WeatherImage imageCode={
+            this.state.weatherIconId}
+            render={this.state.removeComponents}
+            pageRefresh={this.pageRefresh}
+          />
+        </div>
+        <div>
+          <Temperature temp={
+            this.state.userRequestWeather.temperature ?
+            this.state.userRequestWeather.temperature :
+            this.state.userWeather.temperature}
+            render={this.state.removeComponents}
+          />
+        </div>
+        <div>
+          <Condition condition={
+            this.state.userRequestWeather.condition ?
+            this.state.userRequestWeather.condition :
+            this.state.userWeather.condition}
+            render={this.state.removeComponents}
+          />
+        </div>
+        <div className="input-container">
+          <Input getweather={
+            this.getWeather}
+          />
+        </div>
       </div>
     );
   }

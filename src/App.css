@@ -1,8 +1,23 @@
 .App {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: inherit;
+}
+.input-container {
+  width: 100vw
+}
+
+.cold {
   background: linear-gradient(to bottom, #6ec9df 0%, #145b99 100%);
+}
+
+.normal {
+  background: linear-gradient(to bottom, #bba3d0, #957bab, #705488, #4c3066, #2a0d45);
+}
+
+.hot {
+  background: linear-gradient(to bottom, #fec74c, #ffad3f, #ff913b, #ff743e, #fe5446);
 }
