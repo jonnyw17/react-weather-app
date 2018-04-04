@@ -7,7 +7,7 @@ import 'weathericons/css/weather-icons.css';
 import './style.css';
 
 const WeatherImage = (props) => (
-  <div>
+  <div className="">
   {
     props.render === true
       ? <button className="refresh-btn" onClick={props.pageRefresh} type="submit">
